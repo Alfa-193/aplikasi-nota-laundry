@@ -37,6 +37,23 @@ public class Main {
             LaundryOrder order = new LaundryOrder(
                     name, phone, weight, selectedService, express
             );
+            // Memilih status pengerjaan laundry
+            System.out.println("\nPilih status pesanan:");
+
+            LaundryStatus[] statuses = LaundryStatus.values();
+
+            for (int i = 0; i < statuses.length; i++) {
+                System.out.println((i + 1) + ". " + statuses[i]);
+            }
+
+            int statusChoice = readIntInRange(
+                    "Pilihan status: ", 1, statuses.length
+            );
+
+        // Memperbarui status pesanan
+            order.updateStatus(statuses[statusChoice - 1]);
+
+        // Menampilkan nota
             order.printReceipt();
         } catch (IllegalArgumentException exception) {
             System.out.println("Pesanan gagal: " + exception.getMessage());
